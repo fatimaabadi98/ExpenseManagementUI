@@ -1,0 +1,220 @@
+
+
+.expense-form {
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  padding: 20px;
+  width: 400px;
+}
+
+.form-title {
+  color: #000000;
+  font-weight: bold;
+}
+
+.form-container {
+  margin-bottom: 10px;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+
+.edit-link {
+  color: blue;
+}
+
+.delete-link {
+  color: red;
+}
+.expense-table {
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.expense-table th,
+.expense-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.edit-link {
+  color: blue;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.edit-link:hover {
+  color: darkblue;
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #c82333;
+}
+
+.message {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.success {
+  background-color: #dff0d8;
+  color: #3c763d;
+}
+
+.error {
+  background-color: #f2dede;
+  color: #a94442;
+}
+
+.alert {
+  position: relative;
+  padding: 1rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+.error {
+  color: #842029;
+  background-color: #f8d7da;
+  border-color: #f5c2c7;
+}
+
+.success {
+  color: #0f5132;
+  background-color: #d1e7dd;
+  border-color: #badbcc;
+}
+
+.warning {
+  color: #664d03;
+  background-color: #fff3cd;
+  border-color: #ffecb5;
+}
+.primary {
+  color: #084298;
+  background-color: #cfe2ff;
+  border-color: #b6d4fe;
+}
+
+.secondary {
+  color: #41464b;
+  background-color: #e2e3e5;
+  border-color: #d3d6d8;
+}
+
+.info {
+  color: #055160;
+  background-color: #cff4fc;
+  border-color: #b6effb;
+}
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}
+.hide {
+  display: none;
+}
+
+
+.loading-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px; /* Adjust height as needed */
+  font-size: 24px;
+  color: #aaa; /* Adjust color as needed */
+}
+
+.loading-indicator-table {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Adjust the height as needed */
+}
+
+.loading-indicator-table .fa-spinner {
+  font-size: 3rem; /* Adjust the font size to make the spinner larger */
+}
+.hover-effect:hover {
+  color: red; /* Change the color to the desired hover effect */
+}
+
+.hover-effect:focus {
+  color: blue; /* Change the color to the desired click effect */
+}
+/* Add this in your app.css */
+
+.container {
+  max-width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table thead th,
+.table tbody td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.table thead th {
+  font-weight: bold;
+  background-color: #f5f5f5;
+}
+
+.table tbody td {
+  text-align: left;
+}
+
+.table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.button-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.button-row .btn {
+  margin-right: 10px;
+}
+.btn-success {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
