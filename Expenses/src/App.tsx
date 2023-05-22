@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Redirect } from "react-router-dom";
 import {
   BrowserRouter as Router,
   Route,
@@ -122,6 +123,9 @@ const App: React.FC = () => {
                 expenses={expenses}
                 onDeleteExpense={handleExpenseDelete}
               />
+            </Route>
+            <Route exact path="/">
+              <Redirect to="/expenses" />
             </Route>
           </Switch>
         )}
