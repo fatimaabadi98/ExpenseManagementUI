@@ -19,6 +19,7 @@ const App: React.FC = () => {
   const [expenses, setExpenses] = useState<Expense[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [message, setMessage] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleExpenseCreate = async (expense: Expense) => {
     try {
@@ -29,10 +30,14 @@ const App: React.FC = () => {
       );
       const createdExpense = response.data;
       setExpenses([...expenses, createdExpense]);
-      setMessage("The row is created");
+      setMessage("The row is created successfully");
       setTimeout(() => setMessage(null), 5000); // Clear the message after 5 seconds
     } catch (error) {
       console.error("Error creating expense:", error);
+      setErrorMessage("An error has occurred");
+      setTimeout(() => setErrorMessage(null), 5000); 
+      throw new Error ("An error has occured")
+   
     } finally {
       setIsLoading(false);
     }
@@ -50,6 +55,9 @@ const App: React.FC = () => {
       setExpenses(fetchedExpenses);
     } catch (error) {
       console.error("Error fetching expenses:", error);
+      setMessage("An Error has occured");
+      
+      setTimeout(() => setMessage(null), 5000); 
     } finally {
       setIsLoading(false);
     }
@@ -69,8 +77,12 @@ const App: React.FC = () => {
       setMessage("The row is updated");
       setTimeout(() => setMessage(null), 5000); // Clear the message after 5 seconds
     } catch (error) {
-      console.error("Error updating expense:", error);
-    } finally {
+       console.error(error);
+        
+      throw new Error ("An error has occured");
+     
+
+    }  finally {
       setIsLoading(false);
     }
   };
@@ -95,12 +107,19 @@ const App: React.FC = () => {
   return (
     <Router>
       <div>
-        {message && (
-          <Alert status="success">
-            <AlertIcon />
-            {message}
-          </Alert>
-        )}
+      {message && (
+        <Alert status="success">
+          <AlertIcon />
+          {message}
+        </Alert>
+      )}
+
+      {errorMessage && (
+        <Alert status="error" bg="red.500">
+          <AlertIcon />
+               {errorMessage}
+        </Alert>
+      )}
         {isLoading ? (
           <Box
             display="flex"

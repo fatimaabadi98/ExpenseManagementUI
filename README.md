@@ -26,5 +26,5 @@ This is a sample React.js application built with TypeScript, React 18, Shakra UI
 
 1. Development
    To start the development server and run the application locally, use the following command:
-   1. npm run dev
+   1. npm run dev under Expenses directory
       The application will be available at http://localhost:5173/

@@ -9,6 +9,8 @@ import {
   Input,
   Button,
   Text,
+  Alert,
+  AlertIcon
 } from "@chakra-ui/react";
 import Expense from "./Expense";
 
@@ -20,8 +22,8 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ onExpenseCreate }) => {
   const [description, setDescription] = useState("");
   const [value, setValue] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const history = useHistory();
-
   const handleDescriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDescription(e.target.value);
   };
@@ -30,29 +32,45 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ onExpenseCreate }) => {
     setValue(e.target.value);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+  
     const newExpense: Expense = {
       id: "", // Set the ID based on your logic
       description,
       value,
     };
-
-    onExpenseCreate(newExpense);
-    setDescription("");
-    setSuccessMessage("Expense created successfully");
-    setValue("");
-    history.push("/expenses");
+  
+    try {
+      await onExpenseCreate(newExpense);
+      setDescription("");
+      setSuccessMessage("Expense created successfully");
+      setValue("");
+      history.push("/expenses");
+    } catch (error) {
+      setErrorMessage("An error has occurred");
+      throw new Error ("An error has occured");
+    
+    }
   };
 
   return (
     <Box p={4}>
-      {successMessage && (
-        <Text className="success-message" role="alert">
-          {successMessage}
-        </Text>
-      )}
+
+{errorMessage && (
+      <Alert status="error">
+        <AlertIcon />
+        {errorMessage}
+      </Alert>
+    )}
+
+    {successMessage && (
+      <Alert status="success">
+        <AlertIcon />
+        {successMessage}
+      </Alert>
+    )}
+
       <Heading as="h2" mb={4}>
         Add New Expense
       </Heading>

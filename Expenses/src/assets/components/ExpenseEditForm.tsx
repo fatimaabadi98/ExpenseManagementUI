@@ -8,6 +8,9 @@ import {
   FormLabel,
   Input,
   Button,
+  Text,
+  AlertIcon,
+  Alert
 } from "@chakra-ui/react";
 import Expense from "./Expense";
 import axios from "axios";
@@ -23,7 +26,8 @@ const ExpenseEditForm: React.FC<ExpenseEditFormProps> = ({
   const [value, setValue] = useState("");
   const { id } = useParams(); // Get the expense ID from the URL
   const history = useHistory();
-
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   useEffect(() => {
     const fetchExpense = async () => {
       try {
@@ -48,6 +52,7 @@ const ExpenseEditForm: React.FC<ExpenseEditFormProps> = ({
   const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
+  
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -63,15 +68,41 @@ const ExpenseEditForm: React.FC<ExpenseEditFormProps> = ({
         `http://localhost:8000/api/expenses/${id}`,
         updatedExpense
       );
-      onExpenseUpdate(updatedExpense);
+      await onExpenseUpdate(updatedExpense);
+      setSuccessMessage("it is workinggggg");
       history.push("/expenses");
+
     } catch (error) {
       console.error("Error updating expense:", error);
-    }
+      setErrorMessage("An error has occurred");
+    
+      setTimeout(() => setErrorMessage(null), 5000); 
+
+  
+      throw new Error ("An error has occured");
+      
+    } 
+ 
+
+
   };
 
   return (
-    <Box p={4}>
+    
+ <Box p={4}>
+    {errorMessage && (
+      <Alert status="error">
+        <AlertIcon />
+        {errorMessage}
+      </Alert>
+    )}
+
+    {successMessage && (
+      <Alert status="success">
+        <AlertIcon />
+        {successMessage}
+      </Alert>
+    )}
       <Heading as="h2" mb={4}>
         Edit Expense
       </Heading>
